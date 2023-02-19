@@ -32,13 +32,19 @@ size_t CURLCommunicationChannel::write_string_callback(void *contents,
 std::string &CURLCommunicationChannel::request_get() {
     if (this->curl_) {
         this->res_ = curl_easy_perform(this->curl_);
-        curl_easy_cleanup(this->curl_);
+
         if (this->res_ != CURLE_OK) {
             fprintf(stderr, "Get request failed: %s\n",
                     curl_easy_strerror(this->res_));
         }
     }
     return this->buffer_;
+}
+
+CURLCommunicationChannel::~CURLCommunicationChannel() {
+    if (this->curl_) {
+        curl_easy_cleanup(this->curl_);
+    }
 }
 
 }  // namespace METEO_TOP
