@@ -7,10 +7,10 @@ project(${PROJECT_NAME} CXX)
 find_package(Threads REQUIRED)
 find_package(CURL REQUIRED)
 
+
 #  include_directories
 set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
-list(APPEND ${CURL_INCLUDE_DIR})
 
 # libraries
 set( LLIBRARIES
@@ -21,7 +21,6 @@ set( LLIBRARIES
 function(build_main_target)
     file(GLOB_RECURSE SRC_FILES ${SOURCE_DIR}/*.cpp)
     include_directories(${INCLUDE_DIR}) # include the header files for compilation
-
     add_executable(${PROJECT_NAME} ${SRC_FILES})
 
     target_compile_features(${PROJECT_NAME} PUBLIC
@@ -41,7 +40,11 @@ function(build_main_target)
 endfunction()
 
 
+if(TESTING)
+    message(" -> UNIT TEST ENABLED")
+    add_definitions(-DUNIT_TESTING)
+    add_subdirectory(tests)
+endif()
 build_main_target()
-
 
 
