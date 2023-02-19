@@ -7,6 +7,7 @@ project(${PROJECT_NAME} CXX)
 find_package(Threads REQUIRED)
 find_package(CURL REQUIRED)
 
+
 #  include_directories
 set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
@@ -39,7 +40,11 @@ function(build_main_target)
 endfunction()
 
 
+if(TESTING)
+    message(" -> UNIT TEST ENABLED")
+    add_definitions(-DUNIT_TESTING)
+    add_subdirectory(tests)
+endif()
 build_main_target()
-
 
 
