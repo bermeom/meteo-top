@@ -17,6 +17,5 @@ TEST_CASE("Test a GET request", "[unit]") {
         "22\",\"https://rickandmortyapi.com/api/episode/51\"],\"url\":\"https:/"
         "/rickandmortyapi.com/api/character/"
         "380\",\"created\":\"2018-01-10T19:44:22.262Z\"}";
-    std::cout << answer << std::endl;
     REQUIRE(expected_answer.compare(answer) == 0);
 }
