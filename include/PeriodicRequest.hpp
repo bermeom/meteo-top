@@ -13,7 +13,7 @@ class PeriodicRequest {
     CURLCommunicationChannel communcation_channel_;
     const uint64_t periodic_time_us_;
     const uint64_t n_request_;
-    const bool is_n_request_infinite_;
+    bool is_n_request_infinite_;
     void (*call_back_)(size_t, std::string);
 
    public:
@@ -26,6 +26,8 @@ class PeriodicRequest {
     void startup_settings();
 
     void run();
+
+    void set_is_n_request_infinite(const bool is_n_request_infinite);
 };
 
 }  // namespace METEO_TOP

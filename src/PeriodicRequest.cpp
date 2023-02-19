@@ -27,4 +27,9 @@ void PeriodicRequest::run() {
     }
 }
 
+void PeriodicRequest::set_is_n_request_infinite(
+    const bool is_n_request_infinite) {
+    this->is_n_request_infinite_ = is_n_request_infinite;
+}
+
 }  // namespace METEO_TOP
