@@ -3,6 +3,17 @@ cmake_minimum_required(VERSION 3.1.0 FATAL_ERROR)
 set(PROJECT_NAME meteo-top)
 project(${PROJECT_NAME} CXX)
 
+
+include(FetchContent)
+FetchContent_Declare(
+		yaml-cpp
+		GIT_REPOSITORY https://github.com/jbeder/yaml-cpp.git
+		GIT_SHALLOW	ON
+		GIT_TAG yaml-cpp-0.7.0
+	)
+set(YAML_CPP_BUILD_TESTS OFF)
+FetchContent_MakeAvailable(yaml-cpp)
+
 # find_package
 find_package(Threads REQUIRED)
 find_package(CURL REQUIRED)
@@ -16,6 +27,7 @@ set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set( LLIBRARIES
     Threads::Threads
     ${CURL_LIBRARIES}
+    yaml-cpp
 )
 
 function(build_main_target)

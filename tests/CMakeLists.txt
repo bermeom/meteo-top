@@ -11,6 +11,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(Catch2)
 
+
 # find_package
 find_package(Threads REQUIRED)
 find_package(CURL REQUIRED)
@@ -24,6 +25,7 @@ set(SOURCE_TESTS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src-test")
 set( LLIBRARIES
     Threads::Threads
     ${CURL_LIBRARIES}
+    yaml-cpp
     Catch2::Catch2WithMain
 )
 
