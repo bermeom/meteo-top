@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-#include "yaml_cpp.hpp"
+#include "YamlCPP.hpp"
 
 namespace METEO_TOP {
 
