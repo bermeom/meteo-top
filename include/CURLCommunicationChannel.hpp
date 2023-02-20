@@ -18,7 +18,9 @@ class CURLCommunicationChannel {
    public:
     // Constructor
     CURLCommunicationChannel(const std::string url_api);
-
+    // Destructor
+    ~CURLCommunicationChannel();
+    // Methods
     void startup_settings();
 
     static size_t write_string_callback(void *contents, size_t size,

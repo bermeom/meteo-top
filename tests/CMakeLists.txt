@@ -18,7 +18,7 @@ find_package(CURL REQUIRED)
 #  include_directories
 set(INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../include")
 set(SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../src")
-set(SOURCE_TESTS_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
+set(SOURCE_TESTS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src-test")
 
 # libraries
 set( LLIBRARIES
