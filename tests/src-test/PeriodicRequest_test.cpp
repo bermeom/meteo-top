@@ -25,7 +25,7 @@ TEST_CASE("Test periodic request", "[unit]") {
         PRT::count = 0;
 
         METEO_TOP::PeriodicRequest periodicRequest(
-            url_api, periodic_time_us,
+            url_api,
             [](size_t iterartion, std::string result) {
                 auto current = std::chrono::steady_clock::now();
                 std::chrono::duration<double, std::micro> diff =
@@ -40,10 +40,10 @@ TEST_CASE("Test periodic request", "[unit]") {
                 }
                 ++PRT::count;
             },
-            n_request, is_n_request_infinite);
+            periodic_time_us, n_request, is_n_request_infinite);
         periodicRequest.startup_settings();
 
-        periodicRequest.run();
+        periodicRequest.PeriodicTask::run();
         const double MIN_ERROR = 0.1;
         const double error_rate =
             (PRT::average_periodic_time_us / periodic_time_us - 1);
@@ -56,14 +56,15 @@ TEST_CASE("Test periodic request", "[unit]") {
         PRT::start = std::chrono::steady_clock::now();
         PRT::count = 0;
         METEO_TOP::PeriodicRequest periodicRequest(
-            url_api, periodic_time_us,
+            url_api,
             [](size_t iterartion, std::string result) {
                 REQUIRE(true);
-                PRT::periodicRequest->set_is_n_request_infinite(false);
+                PRT::periodicRequest->PeriodicTask::set_are_infinite_iterations(
+                    false);
             },
-            n_request, is_n_request_infinite);
+            periodic_time_us, n_request, is_n_request_infinite);
         periodicRequest.startup_settings();
         PRT::periodicRequest = &periodicRequest;
-        periodicRequest.run();
+        periodicRequest.PeriodicTask::run();
     }
 }
