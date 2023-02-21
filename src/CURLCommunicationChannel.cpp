@@ -17,6 +17,7 @@ void CURLCommunicationChannel::startup_settings() {
         curl_easy_setopt(this->curl_, CURLOPT_WRITEFUNCTION,
                          CURLCommunicationChannel::write_string_callback);
         curl_easy_setopt(this->curl_, CURLOPT_WRITEDATA, &this->buffer_);
+        curl_easy_setopt(this->curl_, CURLOPT_TIMEOUT, 5);
     }
 }
 
