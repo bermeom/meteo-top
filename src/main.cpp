@@ -64,6 +64,8 @@ std::string get_help_text() {
 }
 
 int main(int argc, char* argv[]) {
+    config_terminate_program();
+
     int ch;
     uint64_t periodic_time_us = 0;
     uint64_t n_requests = 0;
@@ -108,7 +110,6 @@ int main(int argc, char* argv[]) {
         n_requests = 0;
     }
 
-    config_terminate_program();
     execute_periodic_task(periodic_time_us, n_requests, is_n_requests_infinite);
 
     return 0;
